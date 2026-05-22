@@ -4,6 +4,49 @@ Universal AgentOps Harness is a reusable operating template for AI-assisted soft
 
 This template is intentionally generic. Apply it to an LMS, portal, SaaS product, mobile app, backend API, infrastructure repository, or public-sector system by filling in the project-specific domain map, verification commands, and risk rules.
 
+## What This Repository Is For
+
+Use this repository when you want AI agents to work inside a software project with clear roles, predictable workflows, and safer delivery rules.
+
+This harness is designed for teams that want:
+
+- plan-first implementation instead of ad hoc prompting
+- clear separation between orchestration and code execution
+- reusable skills and templates across many projects
+- consistent verification and reporting before changes are considered done
+- project-specific customization without rewriting the whole operating model
+
+## Quick Start
+
+If you are applying this harness to a new repository, start here:
+
+1. Copy this template into the target repository root.
+2. Run `./scripts/detect-project.sh`.
+3. Fill out `.hermes/memory/project-profile.md`.
+4. Fill out `.hermes/memory/domain-map.md`.
+5. Update root `AGENTS.md` and add domain-level `AGENTS.md` files where needed.
+6. Adjust `./scripts/verify.sh`, `./scripts/test.sh`, and `./scripts/lint.sh` to match the project.
+7. Run `./scripts/verify.sh`.
+8. Commit the harness as the repository's AgentOps baseline.
+
+## How To Use It
+
+The harness is meant to be used in an execution loop:
+
+1. A request comes in: feature, bugfix, infra task, incident action, or documentation work.
+2. Hermes chooses the workflow, reads memory, and prepares a Codex task brief.
+3. Codex inspects the repository, performs impact analysis, and changes only the necessary files.
+4. Codex runs verification and reports changed files, risk, and rollback notes.
+5. Hermes summarizes the result and updates project memory if the learning should persist.
+
+In practice, that means:
+
+- use `.hermes/workflows/` to decide the task path
+- use `.hermes/memory/` to store durable project facts
+- use `.codex/skills/` to standardize repeated execution patterns
+- use `AGENTS.md` to control behavior inside the repository
+- use `docs/templates/` for consistent task, review, rollback, and report outputs
+
 ## Layer Model
 
 The harness separates orchestration from execution.
@@ -42,6 +85,42 @@ universal-agentops-harness/
 6. Customize `scripts/verify.sh`, `scripts/test.sh`, and `scripts/lint.sh` if the auto-detected defaults are not enough.
 7. Run `scripts/verify.sh` once and record the expected baseline in `.hermes/memory/recurring-tasks.md`.
 
+## Typical Setup By Layer
+
+### 1. Hermes Layer
+
+Customize:
+
+- `.hermes/hermes.config.example.yaml`
+- `.hermes/memory/project-profile.md`
+- `.hermes/memory/domain-map.md`
+- `.hermes/workflows/` if your team has extra task types
+
+Use this layer to define orchestration rules, memory, routing, and workflow expectations.
+
+### 2. Codex Layer
+
+Customize:
+
+- `AGENTS.md`
+- `.codex/config.example.toml`
+- `.codex/hooks.example.json`
+- `.codex/skills/`
+
+Use this layer to define how repository execution should happen: planning, risk checks, verification, reporting, and reusable skills.
+
+### 3. Project Layer
+
+Customize:
+
+- verification commands
+- domain ownership
+- risk policy
+- rollback expectations
+- template outputs used by the team
+
+Use this layer to make the harness fit the actual system without changing the core model.
+
 ## Recommended First Setup Steps
 
 - Identify the primary project type using `scripts/detect-project.sh`.
@@ -60,6 +139,22 @@ universal-agentops-harness/
 6. Codex runs verification: build, test, lint, and optional security checks.
 7. Codex reports changed files, verification results, risk, and rollback notes.
 8. Hermes summarizes the result and updates memory when the learning is reusable.
+
+## Example Adoption Sequence
+
+For a backend API project:
+
+1. Add this harness to the repository.
+2. Map domains such as auth, users, billing, notifications, and deployment.
+3. Point verification scripts to the project's real build, test, lint, and type-check commands.
+4. Add stricter `AGENTS.md` files under high-risk paths such as `auth/`, `migrations/`, or `infra/`.
+5. Start using Hermes workflows and Codex skills for day-to-day tasks.
+
+For an infrastructure repository:
+
+1. Keep the same Hermes and Codex structure.
+2. Tighten risk rules around destructive changes, credentials, and production environments.
+3. Replace generic verification commands with `plan`, `validate`, `diff`, and runbook checks.
 
 ## Customizing Domain Rules
 
@@ -104,6 +199,8 @@ Use the scripts from the repository root:
 ```
 
 `verify.sh` chooses reasonable defaults based on project files. Missing optional commands should be reported clearly instead of hiding the problem or failing without context.
+
+For a real project, replace generic defaults with the exact commands your team trusts in CI.
 
 ## What To Customize Per Project
 
