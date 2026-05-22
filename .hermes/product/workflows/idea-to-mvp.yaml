@@ -1,0 +1,36 @@
+name: idea-to-mvp
+description: Turn a raw product idea into MVP scope, UX and marketing sprint outputs, and Codex-ready tasks.
+steps:
+  - id: clarify_idea
+    agent: idea-facilitator
+    output: idea_brief
+  - id: extract_pain_points
+    agent: pain-point-analyst
+    output: pain_point_map
+  - id: define_customer_segments
+    agent: customer-segmenter
+    output: customer_segment
+  - id: analyze_competitors
+    agent: competitor-analyst
+    output: competitor_comparison
+  - id: design_value_proposition
+    agent: value-proposition-designer
+    output: value_proposition
+  - id: define_mvp_scope
+    agent: mvp-scope-manager
+    output: mvp_scope
+  - id: create_product_brief
+    agent: product-strategist
+    output: prd
+  - id: create_ux_sprint
+    agent: ux-sprint-planner
+    output: ux_flow_brief
+  - id: create_marketing_sprint
+    agent: marketing-strategist
+    output: marketing_brief
+  - id: create_delivery_backlog
+    agent: sprint-planner
+    output: sprint_plan
+  - id: translate_to_codex_tasks
+    agent: codex-backlog-translator
+    output: codex_task_backlog

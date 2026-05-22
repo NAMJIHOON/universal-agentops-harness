@@ -1,0 +1,24 @@
+name: ux-marketing-sprint
+description: Align UX flow and marketing message for an MVP or campaign experiment.
+steps:
+  - id: define_target_user
+    agent: customer-segmenter
+    output: target_user
+  - id: map_user_journey
+    agent: ux-sprint-planner
+    output: user_journey
+  - id: define_information_architecture
+    agent: ux-sprint-planner
+    output: information_architecture
+  - id: define_screen_flow
+    agent: ux-sprint-planner
+    output: screen_flow
+  - id: define_core_message
+    agent: marketing-strategist
+    output: core_message
+  - id: create_landing_copy
+    agent: marketing-strategist
+    output: landing_page_copy
+  - id: define_experiment
+    agent: marketing-strategist
+    output: experiment_plan

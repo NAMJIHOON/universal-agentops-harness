@@ -47,11 +47,18 @@ In practice, that means:
 - use `AGENTS.md` to control behavior inside the repository
 - use `docs/templates/` for consistent task, review, rollback, and report outputs
 
+## ProductOps Extension
+
+The harness also includes a ProductOps pre-implementation layer under `.hermes/product/`. It supports idea discovery, pain point analysis, product planning, UX sprint planning, marketing sprint planning, MVP scoping, and Codex backlog translation.
+
+Use it when a project is not ready for implementation yet. ProductOps turns early product thinking into PRDs, UX briefs, marketing briefs, sprint plans, acceptance criteria, and Codex-ready task backlogs. See `.hermes/product/README.md`.
+
 ## Layer Model
 
 The harness separates orchestration from execution.
 
 - **Hermes layer**: orchestration, memory, routing, workflow selection, agent roles, and task handoff.
+- **ProductOps layer**: pre-implementation discovery, planning, MVP scoping, UX and marketing sprint preparation, and Codex backlog translation.
 - **Codex layer**: repository execution, code modification, build, test, lint, PR work, and review.
 - **Project layer**: domain map, tech stack, verification commands, risk policy, templates, and local AGENTS.md rules.
 

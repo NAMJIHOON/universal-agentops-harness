@@ -5,10 +5,17 @@ Universal AgentOps Harness standardizes how AI agents plan, implement, verify, r
 ## Core Model
 
 - Hermes orchestrates work.
+- ProductOps prepares early product thinking before delivery.
 - Codex executes repository changes.
 - Project memory stores durable facts.
 - Templates standardize repeatable outputs.
 - Scripts provide portable verification defaults.
+
+## Pre-Delivery ProductOps Layer
+
+ProductOps lives under `.hermes/product/` and is used before implementation when a project still needs idea discovery, pain point analysis, customer segmentation, UX sprint planning, marketing planning, MVP scoping, or backlog creation.
+
+Its main output is an implementation-ready Codex task backlog. Hermes owns orchestration across ProductOps workflows, then hands focused task briefs to Codex when the product direction is clear enough to build.
 
 ## Standard Flow
 

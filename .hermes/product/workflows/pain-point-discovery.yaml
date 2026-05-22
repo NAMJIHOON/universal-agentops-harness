@@ -1,0 +1,24 @@
+name: pain-point-discovery
+description: Discover user pain points, current workflow friction, and validation questions.
+steps:
+  - id: collect_context
+    agent: idea-facilitator
+    output: context_summary
+  - id: identify_users
+    agent: customer-segmenter
+    output: user_groups
+  - id: map_current_workflow
+    agent: pain-point-analyst
+    output: current_workflow_map
+  - id: identify_pains
+    agent: pain-point-analyst
+    output: pain_inventory
+  - id: prioritize_pains
+    agent: pain-point-analyst
+    output: prioritized_pains
+  - id: convert_to_opportunities
+    agent: value-proposition-designer
+    output: opportunity_areas
+  - id: define_validation_questions
+    agent: product-strategist
+    output: validation_questions

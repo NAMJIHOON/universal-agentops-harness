@@ -1,0 +1,24 @@
+name: product-planning
+description: Create a product direction, metrics, MVP scope, PRD, and roadmap.
+steps:
+  - id: define_problem
+    agent: product-strategist
+    output: problem_statement
+  - id: define_target_user
+    agent: customer-segmenter
+    output: target_user
+  - id: define_value_proposition
+    agent: value-proposition-designer
+    output: value_proposition
+  - id: define_success_metrics
+    agent: product-strategist
+    output: success_metrics
+  - id: define_mvp_scope
+    agent: mvp-scope-manager
+    output: mvp_scope
+  - id: create_prd
+    agent: product-strategist
+    output: prd
+  - id: create_roadmap
+    agent: product-strategist
+    output: roadmap

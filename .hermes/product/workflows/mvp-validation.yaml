@@ -1,0 +1,24 @@
+name: mvp-validation
+description: Validate MVP hypotheses, analyze signal, and update backlog and memory.
+steps:
+  - id: define_hypotheses
+    agent: product-strategist
+    output: validation_hypotheses
+  - id: define_metrics
+    agent: product-strategist
+    output: validation_metrics
+  - id: define_experiment
+    agent: marketing-strategist
+    output: experiment_plan
+  - id: collect_feedback
+    agent: pain-point-analyst
+    output: feedback_summary
+  - id: analyze_signal
+    agent: product-strategist
+    output: signal_analysis
+  - id: update_backlog
+    agent: sprint-planner
+    output: backlog_update
+  - id: update_memory
+    agent: codex-backlog-translator
+    output: memory_update_recommendations

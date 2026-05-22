@@ -1,0 +1,24 @@
+name: prd-to-backlog
+description: Convert an existing PRD into user stories, acceptance criteria, domain mapping, risk notes, and Codex tasks.
+steps:
+  - id: read_prd
+    agent: product-strategist
+    output: prd_summary
+  - id: split_features
+    agent: mvp-scope-manager
+    output: feature_slices
+  - id: create_user_stories
+    agent: sprint-planner
+    output: user_stories
+  - id: define_acceptance_criteria
+    agent: sprint-planner
+    output: acceptance_criteria
+  - id: map_to_domains
+    agent: codex-backlog-translator
+    output: domain_mapping_hints
+  - id: identify_risks
+    agent: codex-backlog-translator
+    output: risk_notes
+  - id: create_codex_tasks
+    agent: codex-backlog-translator
+    output: codex_task_backlog
