@@ -1,0 +1,92 @@
+# Example Hermes orchestration configuration.
+# Copy this file and adapt values for the target project.
+
+project_name: replace-with-project-name
+default_workflow: feature-development
+
+responsibility_boundary:
+  hermes:
+    - classify_requests
+    - route_domains
+    - select_workflows
+    - prepare_codex_task_briefs
+    - evaluate_policy_gates
+    - update_memory
+  codex:
+    - inspect_repository_files
+    - modify_repository_files
+    - run_verification_commands
+    - review_diffs
+    - report_risk_and_rollback
+  project:
+    - define_domain_map
+    - define_tech_stack
+    - define_verification_commands
+    - define_risk_policy
+
+memory_files:
+  project_profile: .hermes/memory/project-profile.md
+  domain_map: .hermes/memory/domain-map.md
+  decision_log: .hermes/memory/decision-log.md
+  recurring_tasks: .hermes/memory/recurring-tasks.md
+
+available_agents:
+  - planner
+  - domain-router
+  - codex-task-writer
+  - implementation-manager
+  - verification-manager
+  - reviewer
+  - report-writer
+  - memory-manager
+  - skill-curator
+
+available_workflows:
+  - feature-development
+  - bugfix
+  - infra-change
+  - incident-response
+  - document-generation
+
+codex_execution_policy:
+  plan_first: true
+  require_domain_identification: true
+  require_impact_analysis_for_high_risk_changes: true
+  allow_unrelated_refactoring: false
+  require_changed_file_report: true
+  prefer_repository_scripts: true
+
+risk_policy:
+  high_risk_domains:
+    - authentication
+    - authorization
+    - payments
+    - personal-data
+    - database-migrations
+    - deployment
+    - infrastructure
+    - public-api
+  require_human_approval_for:
+    - destructive-data-operations
+    - production-deployment
+    - credential-rotation
+    - public-api-breaking-change
+    - permission-model-change
+  secret_handling:
+    expose_secrets: false
+    commit_secrets: false
+    use_placeholders_in_docs: true
+
+verification_policy:
+  default_gate: build-test-lint
+  commands:
+    detect: ./scripts/detect-project.sh
+    verify: ./scripts/verify.sh
+    test: ./scripts/test.sh
+    lint: ./scripts/lint.sh
+    summarize_changes: ./scripts/summarize-changes.sh
+  required_before_done:
+    - summarize-changes
+    - verify
+  allow_skipped_optional_checks: true
+  require_failure_analysis: true

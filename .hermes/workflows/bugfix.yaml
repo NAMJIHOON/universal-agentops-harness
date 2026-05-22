@@ -1,0 +1,30 @@
+name: bugfix
+description: Reproduce or locate a defect, fix root cause, verify regression coverage, and report.
+steps:
+  - id: classify
+    agent: planner
+    output: bug_type_and_risk
+  - id: reproduce_or_locate
+    agent: domain-router
+    output: reproduction_or_location_notes
+  - id: root_cause_analysis
+    agent: planner
+    output: root_cause_summary
+  - id: create_codex_task
+    agent: codex-task-writer
+    output: codex_task_brief
+  - id: implement_fix
+    agent: implementation-manager
+    output: implementation_result
+  - id: regression_verify
+    agent: verification-manager
+    output: regression_verification_report
+  - id: review
+    agent: reviewer
+    output: review_findings
+  - id: report
+    agent: report-writer
+    output: final_report
+  - id: update_memory
+    agent: memory-manager
+    output: memory_update

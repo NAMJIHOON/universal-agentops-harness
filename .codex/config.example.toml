@@ -1,0 +1,37 @@
+# Example Codex configuration for a project using Universal AgentOps Harness.
+# Copy or merge this into the project's Codex configuration as appropriate.
+
+[project]
+name = "replace-with-project-name"
+description = "Short project description"
+
+[execution]
+plan_first = true
+respect_agents_md = true
+prefer_minimal_changes = true
+allow_unrelated_refactors = false
+
+[verification]
+default_command = "./scripts/verify.sh"
+test_command = "./scripts/test.sh"
+lint_command = "./scripts/lint.sh"
+summary_command = "./scripts/summarize-changes.sh"
+
+[risk]
+require_impact_analysis = true
+block_secret_exposure = true
+require_rollback_notes = true
+high_risk_paths = [
+  "migrations/",
+  "infra/",
+  "deploy/",
+  "security/",
+  "auth/",
+  "billing/"
+]
+
+[reporting]
+include_changed_files = true
+include_verification_results = true
+include_risk_notes = true
+include_rollback_notes = true

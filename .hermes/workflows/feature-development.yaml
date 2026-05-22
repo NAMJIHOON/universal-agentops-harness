@@ -1,0 +1,36 @@
+name: feature-development
+description: Plan, implement, verify, review, and report a new feature or enhancement.
+steps:
+  - id: classify
+    agent: planner
+    output: task_type_and_risk
+  - id: route_domain
+    agent: domain-router
+    output: domain_route
+  - id: plan
+    agent: planner
+    output: implementation_plan
+  - id: impact_analysis
+    agent: planner
+    output: impact_summary
+  - id: create_codex_task
+    agent: codex-task-writer
+    output: codex_task_brief
+  - id: implement
+    agent: implementation-manager
+    output: implementation_result
+  - id: verify
+    agent: verification-manager
+    output: verification_report
+  - id: review
+    agent: reviewer
+    output: review_findings
+  - id: report
+    agent: report-writer
+    output: final_report
+  - id: update_memory
+    agent: memory-manager
+    output: memory_update
+  - id: suggest_skill_candidate
+    agent: skill-curator
+    output: skill_candidate

@@ -1,0 +1,27 @@
+name: incident-response
+description: Collect symptoms, analyze cause, identify safe action, verify, and document incident response.
+steps:
+  - id: classify
+    agent: planner
+    output: incident_type_and_severity
+  - id: collect_symptoms
+    agent: domain-router
+    output: symptom_summary
+  - id: analyze_root_cause
+    agent: planner
+    output: root_cause_hypothesis
+  - id: identify_immediate_action
+    agent: implementation-manager
+    output: immediate_action_plan
+  - id: create_fix_task
+    agent: codex-task-writer
+    output: codex_task_brief
+  - id: verify
+    agent: verification-manager
+    output: verification_report
+  - id: create_incident_report
+    agent: report-writer
+    output: incident_report
+  - id: update_memory
+    agent: memory-manager
+    output: memory_update

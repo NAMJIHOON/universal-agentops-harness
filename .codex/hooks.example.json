@@ -1,0 +1,51 @@
+{
+  "description": "Example hooks for risk control. Adapt paths and commands to the target project.",
+  "pre_edit": [
+    {
+      "name": "require-impact-analysis-for-risky-paths",
+      "paths": [
+        "migrations/**",
+        "infra/**",
+        "deploy/**",
+        "security/**",
+        "auth/**",
+        "billing/**"
+      ],
+      "action": "warn",
+      "message": "Run impact-analysis before editing high-risk paths."
+    }
+  ],
+  "pre_command": [
+    {
+      "name": "block-secret-printing",
+      "action": "warn",
+      "message": "Do not print tokens, private keys, cookies, or credentials."
+    },
+    {
+      "name": "guard-destructive-commands",
+      "commands": [
+        "rm -rf",
+        "drop database",
+        "terraform destroy",
+        "kubectl delete",
+        "git reset --hard"
+      ],
+      "action": "require_confirmation",
+      "message": "Destructive operation requires explicit approval."
+    }
+  ],
+  "post_edit": [
+    {
+      "name": "summarize-changes",
+      "command": "./scripts/summarize-changes.sh",
+      "optional": true
+    }
+  ],
+  "pre_final": [
+    {
+      "name": "verify",
+      "command": "./scripts/verify.sh",
+      "optional": false
+    }
+  ]
+}

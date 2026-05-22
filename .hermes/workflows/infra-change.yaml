@@ -1,0 +1,30 @@
+name: infra-change
+description: Plan, precheck, document, verify, and review infrastructure or deployment changes.
+steps:
+  - id: classify
+    agent: planner
+    output: infra_change_type_and_risk
+  - id: impact_analysis
+    agent: domain-router
+    output: infra_impact_summary
+  - id: precheck
+    agent: verification-manager
+    output: precheck_report
+  - id: create_runbook
+    agent: report-writer
+    output: runbook
+  - id: create_codex_task_if_needed
+    agent: codex-task-writer
+    output: codex_task_brief
+  - id: verify
+    agent: verification-manager
+    output: verification_report
+  - id: rollback_plan_review
+    agent: reviewer
+    output: rollback_review
+  - id: report
+    agent: report-writer
+    output: final_report
+  - id: update_memory
+    agent: memory-manager
+    output: memory_update

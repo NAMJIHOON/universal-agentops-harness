@@ -1,0 +1,24 @@
+name: document-generation
+description: Gather context, choose a template, draft, review, finalize, and update reusable memory.
+steps:
+  - id: classify
+    agent: planner
+    output: document_type_and_audience
+  - id: gather_context
+    agent: domain-router
+    output: context_summary
+  - id: select_template
+    agent: report-writer
+    output: selected_template
+  - id: draft_document
+    agent: report-writer
+    output: draft_document
+  - id: review_document
+    agent: reviewer
+    output: document_review
+  - id: finalize
+    agent: report-writer
+    output: final_document
+  - id: update_memory
+    agent: memory-manager
+    output: memory_update
