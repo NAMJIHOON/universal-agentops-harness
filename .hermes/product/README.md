@@ -38,6 +38,19 @@ Codex receives implementation-ready task briefs only after ProductOps has produc
 
 The final ProductOps handoff is usually `templates/codex-task-backlog.md`, which can be translated into Codex tasks using `agents/codex-backlog-translator.md`.
 
+## Quality Gates Before Codex
+
+ProductOps outputs should pass the Quality Gate Layer before they become Codex tasks. Use `.hermes/quality/gates/` to check whether discovery, planning, UX, marketing, MVP scope, and backlog artifacts are clear enough for handoff.
+
+Recommended ProductOps gates:
+
+- Discovery outputs pass `discovery-gate.md`.
+- PRD and MVP outputs pass `planning-gate.md`.
+- UX and marketing outputs pass `ux-marketing-gate.md`.
+- Backlog outputs pass `delivery-ready-gate.md`.
+
+If a gate fails, refine the ProductOps artifact before asking Codex to implement it.
+
 ## Recommended Idea-To-MVP Workflow
 
 1. Clarify the idea.

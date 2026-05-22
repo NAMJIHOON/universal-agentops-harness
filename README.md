@@ -53,12 +53,24 @@ The harness also includes a ProductOps pre-implementation layer under `.hermes/p
 
 Use it when a project is not ready for implementation yet. ProductOps turns early product thinking into PRDs, UX briefs, marketing briefs, sprint plans, acceptance criteria, and Codex-ready task backlogs. See `.hermes/product/README.md`.
 
+## Quality Gate Layer
+
+The harness includes a Quality Gate Layer under `.hermes/quality/` so major artifacts are evaluated before handoff:
+
+- idea -> discovery gate
+- PRD/MVP -> planning gate
+- UX/marketing -> ux-marketing gate
+- backlog -> delivery-ready gate
+- implementation -> implementation gate
+- release -> release-ready gate
+
 ## Layer Model
 
 The harness separates orchestration from execution.
 
 - **Hermes layer**: orchestration, memory, routing, workflow selection, agent roles, and task handoff.
 - **ProductOps layer**: pre-implementation discovery, planning, MVP scoping, UX and marketing sprint preparation, and Codex backlog translation.
+- **Quality Gate layer**: reusable rubrics, gates, and checklists for deciding whether artifacts are ready to move forward.
 - **Codex layer**: repository execution, code modification, build, test, lint, PR work, and review.
 - **Project layer**: domain map, tech stack, verification commands, risk policy, templates, and local AGENTS.md rules.
 
